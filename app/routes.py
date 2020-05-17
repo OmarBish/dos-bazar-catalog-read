@@ -57,8 +57,8 @@ def query():
     
     # operation
     if sqlite_query.startswith('INSERT') :
-        master_res = requests.post(replica + "/query" ,json=data)
-        res = master_res.get_json()
+        master_res = requests.post("https://dos-bazar-catalog-master.herokuapp.com" + "/query" ,json=data)
+        res = master_res.json()
         status = master_res.status_code
     elif sqlite_query.startswith('SELECT'):
         cursor.execute(sqlite_query)
@@ -68,8 +68,8 @@ def query():
             res.append({'id':row[0],'title':row[1],'amount':row[2]})
         status = 200
     elif sqlite_query.startswith('UPDATE'):
-        master_res = requests.post(replica + "/query" ,json=data)
-        res = master_res.get_json()
+        master_res = requests.post("https://dos-bazar-catalog-master.herokuapp.com" + "/query" ,json=data)
+        res = master_res.json()
         status = master_res.status_code
     else:
         res={

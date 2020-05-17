@@ -55,9 +55,11 @@ def query():
     conn = sqlite3.connect('bazar.db')
     cursor = conn.cursor()
     
+
     # operation
     if sqlite_query.startswith('INSERT') :
         master_res = requests.post("https://dos-bazar-catalog-master.herokuapp.com" + "/query" ,json=data)
+        # master_res = requests.post("http://127.0.0.1:5000" + "/query" ,json=data)
         res = master_res.json()
         status = master_res.status_code
     elif sqlite_query.startswith('SELECT'):
@@ -69,6 +71,7 @@ def query():
         status = 200
     elif sqlite_query.startswith('UPDATE'):
         master_res = requests.post("https://dos-bazar-catalog-master.herokuapp.com" + "/query" ,json=data)
+        # master_res = requests.post("http://127.0.0.1:5000" + "/query" ,json=data)
         res = master_res.json()
         status = master_res.status_code
     else:

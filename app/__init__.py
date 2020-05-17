@@ -16,17 +16,17 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 if(os.path.exists('bazar.db')):
     os.remove('bazar.db')
 
-from pathlib import Path
-Path('bazar.db').touch()
-
-conn = sqlite3.connect('bazar.db')
-cursor = conn.cursor()
-cursor.execute('''CREATE TABLE books
-             (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-              title varchar(64) NOT NULL,
-              amount INTEGER NOT NULL)''')
-cursor.close()
-conn.close()
+try:
+    conn = sqlite3.connect('bazar.db')
+    cursor = conn.cursor()
+    cursor.execute('''CREATE TABLE books
+                (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+                title varchar(64) NOT NULL,
+                amount INTEGER NOT NULL)''')
+    cursor.close()
+    conn.close()
+except :
+    pass
 
 #get routes
 from app import routes

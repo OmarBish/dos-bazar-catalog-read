@@ -15,6 +15,10 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 #build database 
 if(os.path.exists('bazar.db')):
     os.remove('bazar.db')
+
+from pathlib import Path
+Path('bazar.db').touch()
+
 conn = sqlite3.connect('bazar.db')
 cursor = conn.cursor()
 cursor.execute('''CREATE TABLE books

@@ -3,6 +3,8 @@ from flask import Flask,redirect,request,jsonify
 from flask_cors import CORS, cross_origin
 import os
 import sqlite3
+import logging
+from logging import StreamHandler
 
 # local imports
 
@@ -32,5 +34,9 @@ app_config = {
 
 def create_app(config_name):
     app.config.from_object(app_config[config_name])
+    file_handler = StreamHandler()
+    file_handler.setLevel(logging.WARNING)
+    app.logger.addHandler(file_handler)
+
     return app
 

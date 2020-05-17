@@ -14,7 +14,7 @@ def index():
     return redirect('https://bazar2.docs.apiary.io')
 
 @app.route('/master-notification',methods=['POST'])
-def query():
+def massterNotification():
     # variables
     data = request.get_json()
     res = None
